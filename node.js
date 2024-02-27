@@ -30,21 +30,18 @@ app.get("/form", function(req,res)
 })
 
 var fs =  require("fs");
-app.get('/userinfo', function(req, res){
-    var data = fs.readFileSync(__dirname + '/currentuser.txt')
-    res.json(data)
-})
+
 
 app.post("/login",urlEncoded, async(req,res)=>
 {
-      const finduser= await collection.findOne({'email':req.body.email})
-      if (finduser) 
-      {
-          res.sendFile(__dirname+"/userInfo.html")
-      }
-      else{
-          res.sendFile(__dirname+"/signup.html")
-      }
+    const finduser= await collection.findOne({'username':req.body.username})
+    if (finduser) 
+    {
+        res.sendFile(__dirname+"/userInfo.html")
+    }
+    else{
+        res.sendFile(__dirname+"/signup.html")
+    }
 })
 
 
